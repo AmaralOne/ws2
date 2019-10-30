@@ -1,0 +1,12 @@
+C:\Users\FlavioFilho\source\repos\WebServiceE\Banco\bin\Debug\Banco.dll.config
+C:\Users\FlavioFilho\source\repos\WebServiceE\Banco\bin\Debug\Banco.dll
+C:\Users\FlavioFilho\source\repos\WebServiceE\Banco\bin\Debug\Banco.pdb
+C:\Users\FlavioFilho\source\repos\WebServiceE\Banco\bin\Debug\EntityFramework.dll
+C:\Users\FlavioFilho\source\repos\WebServiceE\Banco\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\FlavioFilho\source\repos\WebServiceE\Banco\bin\Debug\EntityFramework.xml
+C:\Users\FlavioFilho\source\repos\WebServiceE\Banco\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\FlavioFilho\source\repos\WebServiceE\Banco\obj\Debug\Banco.csprojAssemblyReference.cache
+C:\Users\FlavioFilho\source\repos\WebServiceE\Banco\obj\Debug\Banco.csproj.CoreCompileInputs.cache
+C:\Users\FlavioFilho\source\repos\WebServiceE\Banco\obj\Debug\Banco.csproj.CopyComplete
+C:\Users\FlavioFilho\source\repos\WebServiceE\Banco\obj\Debug\Banco.dll
+C:\Users\FlavioFilho\source\repos\WebServiceE\Banco\obj\Debug\Banco.pdb
