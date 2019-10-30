@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Web;
 using WebServiceE.Entity;
 
@@ -38,8 +39,8 @@ namespace WebServiceE.DAL
         {
             string retorno = "0";
 
-            string sql = "Insert into Produtos (Id,nome,descricao,categoria,modelo,marca,valor,quantidade,inativo) " +
-               $"VALUES ({p.id},'{p.nome}','{p.descricao}','{p.categoria}','{p.modelo}','{p.marca}','{p.valor}','{p.quantidade}','0');";
+            string sql = "Insert into Produto (nome,descricao,categoria,modelo,marca,valor,quantidade,inativo) " +
+               $"VALUES ('{p.nome}','{p.descricao}','{p.categoria}','{p.modelo}','{p.marca}','{p.valor}','{p.quantidade}','0');";
 
             using (SqlConnection sqlConn = Conexao.getInstancia().getConexaoSql())
             {
@@ -60,11 +61,97 @@ namespace WebServiceE.DAL
             return retorno;
         }
 
+        internal string alterarProduto(Produt p)
+        {
+            string retorno = "0";
+            StringBuilder sb = new StringBuilder();
+            sb.Append("UPDATE Produto SET ");
+
+            sb.Append("nome = '" + p.nome + "',");
+            sb.Append("marca = '" + p.marca + "',");
+            sb.Append("modelo = '" + p.modelo + "',");
+            sb.Append("quantidade = '" + p.quantidade + "',");
+            sb.Append("valor = '" + p.valor + "',");
+            sb.Append("descricao = '" + p.descricao + "',");
+            sb.Append("categoria = '" + p.categoria + "'");
+
+
+
+
+            sb.Append("WHERE Id = " +int.Parse( p.id));
+
+            using (SqlConnection sqlConn = Conexao.getInstancia().getConexaoSql())
+            {
+                sqlConn.Open();
+
+                SqlCommand cmd = new SqlCommand(sb.ToString(), sqlConn);
+
+                retorno = cmd.ExecuteNonQuery().ToString();
+
+
+                sqlConn.Close();
+            }
+
+            return retorno;
+        }
+
+        internal List<Produt> buscaProduto(string nome)
+        {
+            List<Produt> lista = new List<Produt>();
+
+            string sql = "select * from Produto where inativo = '0' and nome = '"+nome+"'";
+
+            using (SqlConnection sqlConn = Conexao.getInstancia().getConexaoSql())
+            {
+                sqlConn.Open();
+
+                //OdbcDataReader dadosProduto = new OdbcCommand(sql, conexaoAccess).ExecuteReader();
+
+                SqlCommand cmd = new SqlCommand(sql, sqlConn);
+                SqlDataReader dadosProduto = cmd.ExecuteReader();
+
+                while (dadosProduto.Read())
+                {
+                    lista.Add(BLL.Produto.Instance.preencherObjeto(dadosProduto));
+                }
+
+                sqlConn.Close();
+            }
+
+            return lista;
+        }
+
+        internal string deletarProduto(int id)
+        {
+            string retorno = "0";
+            StringBuilder sb = new StringBuilder();
+            sb.Append("UPDATE Produto SET ");
+
+            sb.Append("inativo = '1'");
+
+
+            sb.Append("WHERE Id = " + id);
+
+            using (SqlConnection sqlConn = Conexao.getInstancia().getConexaoSql())
+            {
+                sqlConn.Open();
+
+                SqlCommand cmd = new SqlCommand(sb.ToString(), sqlConn);
+
+                retorno = cmd.ExecuteNonQuery().ToString();
+
+
+                sqlConn.Close();
+            }
+
+            return retorno;
+        }
+
         internal List<Produt> Listar()
         {
             List<Produt> lista = new List<Produt>();
 
-            string sql = "SELECT * FROM Produtos";
+            string sql = "select * from Produto where inativo = '0'";
 
             using (SqlConnection sqlConn = Conexao.getInstancia().getConexaoSql())
             {

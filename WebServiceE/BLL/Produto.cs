@@ -35,6 +35,45 @@ namespace WebServiceE.BLL
             }
         }
 
+        public string DeletarProduto(int id)
+        {
+            try
+            {
+
+                return DAL.Produto.Instance.deletarProduto(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(String.Format(ex.Message));
+            }
+        }
+
+        public List<Produt> BuscarProduto(string nome)
+        {
+            try
+            {
+
+                return DAL.Produto.Instance.buscaProduto(nome);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(String.Format(ex.Message));
+            }
+        }
+
+        public string AlterarProduto(Produt produto)
+        {
+            try
+            {
+
+                return DAL.Produto.Instance.alterarProduto(produto);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(String.Format(ex.Message));
+            }
+        }
+
         public Produt preencherObjeto(SqlDataReader dados)
         {
             Produt obj = new Produt();

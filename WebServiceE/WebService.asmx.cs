@@ -82,6 +82,65 @@ namespace WebServiceE
 
         }
 
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Xml)]
+        public string alterarProdut(string json)
+        {
+            string mensagem = null;
+
+            try
+            {
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                Produt p = js.Deserialize<Produt>(json);
+
+                string retorno = BLL.Produto.Instance.AlterarProduto(p);
+
+
+
+                return retorno;
+
+            }
+            catch (Exception e)
+            {
+                mensagem = "ErrorServer.: " + e.Message;
+            }
+
+            return mensagem;
+
+
+
+        }
+
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Xml)]
+        public string deletarProdut(int id)
+        {
+            string mensagem = null;
+
+            try
+            {
+
+
+
+                string retorno = BLL.Produto.Instance.DeletarProduto(id);
+
+
+
+                return retorno;
+
+            }
+            catch (Exception e)
+            {
+                mensagem = "ErrorServer.: " + e.Message;
+            }
+
+            return mensagem;
+
+
+
+        }
+
 
 
         [WebMethod]
@@ -95,6 +154,39 @@ namespace WebServiceE
 
 
                 List<Produt> retorno = BLL.Produto.Instance.ListarTodosProduto();
+
+                JavaScriptSerializer jss = new JavaScriptSerializer();
+                jss.MaxJsonLength = Int32.MaxValue;
+                mensagem = jss.Serialize(retorno);
+
+
+
+                return mensagem;
+
+            }
+            catch (Exception e)
+            {
+                mensagem = "ErrorServer.: " + e.Message;
+            }
+
+            return mensagem;
+
+
+
+        }
+
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Xml)]
+        public string buscaProdut(string nome)
+        {
+            string mensagem = null;
+
+            try
+            {
+
+
+                List<Produt> retorno = BLL.Produto.Instance.BuscarProduto(nome);
 
                 JavaScriptSerializer jss = new JavaScriptSerializer();
                 jss.MaxJsonLength = Int32.MaxValue;
