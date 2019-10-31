@@ -23,34 +23,7 @@ namespace WebServiceE
     public class WebService : System.Web.Services.WebService
     {
 
-        private List<Compra> compras;
-
-
-        private List<Produt> estoque = new List<Produt>();
-
-        [WebMethod]
-        [ScriptMethod(ResponseFormat = ResponseFormat.Xml)]
-        public xml ObterProdutoPorMarca(string marca_produto)
-        {
-            List<Entity.Produto> produtos = DAL.Produto.Instance.ListarProdutos();
-
-            //Filtrando apenas produtos da marca escolhida
-            var result = from f in produtos select f;
-            if (marca_produto != "todas")
-            {
-                result = from f in produtos
-                         where f.marca_func.Equals(marca_produto)
-                         select f;
-            }
-
-
-
-            //Popular a Classe xml
-            xml dadosXML = new xml(result.ToList());
-            //Retornar o xml
-
-            return dadosXML;
-        }
+       
 
 
         [WebMethod]

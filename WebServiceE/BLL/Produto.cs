@@ -78,12 +78,12 @@ namespace WebServiceE.BLL
         {
             Produt obj = new Produt();
 
-            obj.id = dados["id"].ToString();
+            obj.id = int.Parse(dados["id"].ToString());
             obj.nome = dados["nome"].ToString();
             obj.marca = dados["marca"].ToString();
             obj.modelo = dados["modelo"].ToString();
-            obj.quantidade = dados["quantidade"].ToString();
-            obj.valor = dados["valor"].ToString();
+            obj.quantidade = float.Parse( dados["quantidade"].ToString());
+            obj.valor = float.Parse(dados["valor"].ToString());
             obj.categoria = dados["categoria"].ToString();
             obj.descricao = dados["descricao"].ToString();
 

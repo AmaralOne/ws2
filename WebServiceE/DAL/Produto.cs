@@ -78,7 +78,7 @@ namespace WebServiceE.DAL
 
 
 
-            sb.Append("WHERE Id = " +int.Parse( p.id));
+            sb.Append("WHERE Id = " + p.id);
 
             using (SqlConnection sqlConn = Conexao.getInstancia().getConexaoSql())
             {
