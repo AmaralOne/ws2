@@ -39,8 +39,9 @@ namespace WebServiceE.DAL
         {
             string retorno = "0";
 
+            int id = 0;
             string sql = "Insert into Produto (nome,descricao,categoria,modelo,marca,valor,quantidade,inativo) " +
-               $"VALUES ('{p.nome}','{p.descricao}','{p.categoria}','{p.modelo}','{p.marca}','{p.valor}','{p.quantidade}','0');";
+               $"VALUES ('{p.nome}','{p.descricao}','{p.categoria}','{p.modelo}','{p.marca}','{p.valor}','{p.quantidade}','0'); SET @ID = SCOPE_IDENTITY();";
 
             using (SqlConnection sqlConn = Conexao.getInstancia().getConexaoSql())
             {
@@ -50,11 +51,26 @@ namespace WebServiceE.DAL
 
 
 
-                retorno = cmd.ExecuteNonQuery().ToString();
+                //retorno = cmd.ExecuteNonQuery().ToString();
+
+               // int insertedID = Convert.ToInt32(cmd.ExecuteScalar());
+
+
+                //retorno = insertedID.ToString();
+
+                cmd.Parameters.AddWithValue("@ID", 0).Direction = ParameterDirection.Output;
+
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+                    id = Convert.ToInt32(cmd.Parameters["@ID"].Value);
+                }
+
 
 
                 sqlConn.Close();
             }
+
+            retorno = id.ToString();
 
             
 
