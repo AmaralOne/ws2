@@ -39,9 +39,12 @@ namespace WebServiceE.DAL
         {
             string retorno = "0";
 
+
             int id = 0;
+            string valorPonto = p.valor.ToString().Replace(',', '.');
             string sql = "Insert into Produto (nome,descricao,categoria,modelo,marca,valor,quantidade,inativo) " +
-               $"VALUES ('{p.nome}','{p.descricao}','{p.categoria}','{p.modelo}','{p.marca}','{p.valor}','{p.quantidade}','0'); SET @ID = SCOPE_IDENTITY();";
+               $"VALUES ('{p.nome}','{p.descricao}','{p.categoria}','{p.modelo}','{p.marca}','{valorPonto}','{p.quantidade}','0'); SET @ID = SCOPE_IDENTITY();";
+
 
             using (SqlConnection sqlConn = Conexao.getInstancia().getConexaoSql())
             {
@@ -80,6 +83,7 @@ namespace WebServiceE.DAL
         internal string alterarProduto(Produt p)
         {
             string retorno = "0";
+            string valorPonto = p.valor.ToString().Replace(',', '.');
             StringBuilder sb = new StringBuilder();
             sb.Append("UPDATE Produto SET ");
 
@@ -87,7 +91,7 @@ namespace WebServiceE.DAL
             sb.Append("marca = '" + p.marca + "',");
             sb.Append("modelo = '" + p.modelo + "',");
             sb.Append("quantidade = '" + p.quantidade + "',");
-            sb.Append("valor = '" + p.valor + "',");
+            sb.Append("valor = '" + valorPonto + "',");
             sb.Append("descricao = '" + p.descricao + "',");
             sb.Append("categoria = '" + p.categoria + "'");
 
