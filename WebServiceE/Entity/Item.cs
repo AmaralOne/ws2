@@ -12,6 +12,6 @@ namespace WebServiceE.Entity
         public int idProduto { get; set; }
         public int qtd { get; set; }
         public float valor { get; set; }
-        public Produto produto { get; set; }
+        public Produt produto { get; set; }
     }
 }

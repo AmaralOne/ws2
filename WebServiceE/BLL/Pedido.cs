@@ -28,6 +28,10 @@ namespace WebServiceE.BLL
             obj.id = int.Parse(dados["id"].ToString());
             obj.valor = float.Parse(dados["valor"].ToString());
             obj.status = dados["status"].ToString();
+
+            obj.itens = DAL.Item.Instance.Listar(obj.id);
+
+            
            
             return obj;
         }

@@ -31,6 +31,15 @@ namespace WebServiceE.BLL
             obj.valor = float.Parse(dados["valor"].ToString());
             obj.qtd = int.Parse(dados["quantidade"].ToString());
 
+            List<Entity.Produt> axu = DAL.Produto.Instance.buscaProduto(obj.idProduto);
+
+            if(axu.Count()> 0)
+            {
+                obj.produto = axu[0];
+            }
+
+            
+
             return obj;
         }
 

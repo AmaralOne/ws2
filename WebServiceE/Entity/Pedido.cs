@@ -10,6 +10,6 @@ namespace WebServiceE.Entity
         public int id { get; set; }
         public float valor{ get; set; }
         public string status { get; set; }
-
+        public List<Item> itens { get; set; }
     }
 }
