@@ -78,12 +78,17 @@
     <Content Include="WebService.asmx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\Item.cs" />
+    <Compile Include="BLL\Pedido.cs" />
     <Compile Include="BLL\Produto.cs" />
     <Compile Include="Conexao.cs" />
+    <Compile Include="DAL\Item.cs" />
+    <Compile Include="DAL\Pedido.cs" />
     <Compile Include="DAL\Produto.cs" />
     <Compile Include="Entity\Compra.cs" />
     <Compile Include="Entity\Contexto.cs" />
     <Compile Include="Entity\Item.cs" />
+    <Compile Include="Entity\Pedido.cs" />
     <Compile Include="Entity\Produt.cs" />
     <Compile Include="Entity\Produto.cs" />
     <Compile Include="Entity\xml.cs" />

@@ -80,6 +80,32 @@ namespace WebServiceE.DAL
             return retorno;
         }
 
+        internal List<Produt> buscaProduto(int id)
+        {
+            List<Produt> lista = new List<Produt>();
+
+            string sql = "select * from Produto where inativo = '0' and Id = '" + id + "'";
+
+            using (SqlConnection sqlConn = Conexao.getInstancia().getConexaoSql())
+            {
+                sqlConn.Open();
+
+                //OdbcDataReader dadosProduto = new OdbcCommand(sql, conexaoAccess).ExecuteReader();
+
+                SqlCommand cmd = new SqlCommand(sql, sqlConn);
+                SqlDataReader dadosProduto = cmd.ExecuteReader();
+
+                while (dadosProduto.Read())
+                {
+                    lista.Add(BLL.Produto.Instance.preencherObjeto(dadosProduto));
+                }
+
+                sqlConn.Close();
+            }
+
+            return lista;
+        }
+
         internal string alterarProduto(Produt p)
         {
             string retorno = "0";

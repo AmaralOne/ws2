@@ -61,6 +61,19 @@ namespace WebServiceE.BLL
             }
         }
 
+        public List<Produt> BuscarProdutoPorId(int id)
+        {
+            try
+            {
+
+                return DAL.Produto.Instance.buscaProduto(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(String.Format(ex.Message));
+            }
+        }
+
         public string AlterarProduto(Produt produto)
         {
             try
